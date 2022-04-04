@@ -30,14 +30,16 @@ const UserSchema = new Schema({
     },
     telephone: {
         type: String,
-        required: true
+
     },
     dateOfBirth: {
         type: Date,
-        default: Date.now
+        required: true
     },
     gender: {
         type: String,
+        enum: ['male', 'female', 'other', 'N/A'],
+        default: 'N/A',
         required: true
     }
 });

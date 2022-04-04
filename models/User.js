@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+
 require('dotenv').config();
 
-const app = express();
-const port = process.env.PORT || 8000;
 
+
+
+const app = express();
+
+const PORT = process.env.PORT || 8000;
 app.use(cors());
 app.use(express.json());
 
@@ -12,11 +16,15 @@ mongoose.connect(url, { user: DB_USER, host: DB_HOST, password: DB_PASS, name: D
 const connection = mongoose.connection;
 
 
-connection.once(port, () => {
+connection.once(PORT, () => {
     console.log(`listening on port: ${DB_NAME}`);
 });
 
-app.listen(port, 'localhost', () => {
+app.post('user/registry', req, res => {
+    return res.json({ msg: 'success' })
+});
+
+app.listen(PORT, 'localhost', () => {
     console.log(`listening on port:${port}`)
 });
 
